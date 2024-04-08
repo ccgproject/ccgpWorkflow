@@ -73,10 +73,7 @@ sentieon_combine_gvcf:
 process_ref:
   mem: 15000
 # custom python algo to create intervals
-create_db_intervals:
-  mem: 5000
-
-create_gvcf_intervals:
+create_intervals:
   mem: 5000
 
 ## Callable sites workflow
@@ -94,6 +91,7 @@ merge_d4:
   mem: 10000
 callable_bed:
   mem: 10000
+  disk_mb: 10000
 
 ###
 # bam2vcf workflows
@@ -101,19 +99,19 @@ callable_bed:
 
 # gatk HaplotypeCaller
 bam2gvcf:
-  mem: 4000
+  mem: 9000
 # gatk GenomicsDBImport
 gvcf2DB:
-  mem: 4000
+  mem: 32000
 # gatk GenotypeGVCFs
 DB2vcf:
-  mem: 4000
+  mem: 32000
 # gatk filterVcfs
 filterVcfs:
   mem: 4000
 # gatk GatherVcfs
 gatherVcfs:
-  mem: 4000
+  mem: 9000
 # vcftools program
 vcftools:
   mem: 8000
