@@ -66,6 +66,8 @@ rule subsample_snps:
         snpqc = "results/{refGenome}/QC/{prefix}_snpqc.txt",
         fai = "results/{refGenome}/QC/{prefix}.QC.fai",
         sumstats = "results/{refGenome}/QC/{prefix}_bam_sumstats.txt"
+    log:
+        "logs/{refGenome}/QC/subsample_snps/{prefix}.txt"
     conda:
         "envs/subsample_snps.yml"
     resources:
