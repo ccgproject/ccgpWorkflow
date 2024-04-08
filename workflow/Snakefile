@@ -1,7 +1,10 @@
 from snakemake.utils import min_version
 min_version("7.0")
-configfile: config["config_file"]
-#configfile: "config/config.yaml"
+if config.get("config_file") is not None:
+    configfile: config["config_file"]
+else:
+    configfile: "config/config.yaml"
+
 include: "rules/common.smk"
 include: "rules/sumstats.smk"
 include: "rules/fastq.smk"
@@ -25,11 +28,6 @@ else:
 
 if config['cov_filter']:
     include: "rules/cov_filter.smk"
-
-if config['remote_reads']:
-    from snakemake.remote.GS import RemoteProvider as GSRemoteProvider
-    GS = GSRemoteProvider()
-    GS_READS_PREFIX = config['remote_reads_prefix']
 
 module qc:
     snakefile:
